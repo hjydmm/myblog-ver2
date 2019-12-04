@@ -2,7 +2,6 @@
 
 namespace App\Model;
 
-
 class Like extends BaseModel
 {
     protected $table = 'like';
