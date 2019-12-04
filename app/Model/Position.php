@@ -2,17 +2,11 @@
 
 namespace App\Model;
 
-use Illuminate\Database\Eloquent\Model;
-use App\Model\Admin;
-
-class Position extends Model
+class Position extends BaseModel
 {
-    //
     protected $table = 'position';
-    public $timestamps = false;
 
     public function admin(){
         return $this->hasMany(Admin::class, 'position_id', 'id');
     }
-
 }
