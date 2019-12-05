@@ -66,10 +66,13 @@ return [
 
         'images' => [
             'driver' => 'local',
+            'root' => url('/assets/images/userAvatars'),
+            'path' => '/assets/images/userAvatars'
             //root是实际图片存放的位置
-            'root'   => public_path('assets/images/userAvatars'),
+            //'root'   => public_path('assets/images/userAvatars'),
             //path是地址栏上访问的位置
-            'path'   => '/assets/images/userAvatars',
+            //'path'   => '/assets/images/userAvatars',
+            //https://blog.csdn.net/tony_110/article/details/80105099
         ]
 
     ],
