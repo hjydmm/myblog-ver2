@@ -17,7 +17,7 @@
 		              	<!-- 添加隐藏域 -->
 		              <input type="hidden" name="avatar" value="">
 			            <div class="pic">
-			              <div style="width:260px; height:260px; background:url('{{ $user->avatar }}') no-repeat center / cover" class="thumbnail">
+			              <div style="width:260px; height:260px; background:url('{{ url($user->avatar) }}') no-repeat center / cover" class="thumbnail">
 			              </div>
 			          	</div>
 	              {{--<div class="thumbnail" style="width: 240px;height:240px;overflow:hidden;">--}}
