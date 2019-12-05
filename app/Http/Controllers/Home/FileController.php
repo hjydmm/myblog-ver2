@@ -30,14 +30,16 @@ class FileController extends BaseController
         $id = Auth::guard('home')->user()->id;
         if($this->request -> hasFile('file') && $this->request -> file('file') -> isValid()){
             $filename = sha1(time() . $this->request -> file('file') -> getClientOriginalName()) . '.' . $this->request -> file('file') -> getClientOriginalExtension();
-            Storage::disk('images') -> put($filename, file_get_contents($this->request->file('file')->path()));
-
-            $path = Config::get('filesystems.disks.images.path') . '/' . $filename;
+            $localRealPath = $this->request->file('file')->getRealPath();
+            Storage::disk('images') -> put($filename, file_get_contents($localRealPath));
+         
+            $path = Config::get('filesystems.disks.images.path') . '/' . $filename;  //save path
+            $uploadPath = Config::get('filesystems.disks.images.root') . '/' . $filename;  //access path
 
             if (!$this->usersService->updateUser($id, ['avatar' => $path])) {
                 return $this->ajaxError('上传失败');
             }
-            return $this->ajaxSuccess('上传成功', ['path'=>$path]);
+            return $this->ajaxSuccess('上传成功', ['path'=>$uploadPath]);
         } else {
             return $this->ajaxError('请选择上传的头像');
         }
